@@ -1,0 +1,41 @@
+from tkinter import *
+
+# cria a tela
+janela = Tk()
+
+# configura o tamanho da janela
+janela.geometry('600x400')
+
+# título da janela
+janela.title('Sorteio Maki')
+
+# cria o ícone da janela, que deve ser armazenado na mesma pasta do programa
+# janela.wm_iconbitmap('icone.ico')
+
+# cria o texto na tela (Label)
+# O metodo Label deve chamar o pai (o conteiner/instancia em que está contido, no caso, a janela e o texto
+# pack() irá mostrar o conteúdo criado na tela. A ordem de empacotamento define a ordem de aparecimento dos widgets no programa
+titulo = Label(janela, text = 'Sorteio Makilandia!!!', fg = 'green')
+titulo.pack()
+
+lb_numeros = Label(janela, text = 'Quantos numeros deseja sortear? ')
+ent_numeros = Entry(janela)		# cria uma entrada de texto
+lb_range = Label(janela, text = 'Sortear do numero 1 ao: ')
+ent_range = Entry(janela)
+lb_numeros.pack()
+ent_numeros.pack()
+lb_range.pack()
+ent_range.pack()
+
+
+# cria um botao
+botao = Button(janela, text = 'Sortear', bg = 'green')
+botao.pack()
+
+# exibe os numeros sorteados
+lb_resultado = Label(janela, text = 'Numeros sorteados: ', fg = 'green')
+lb_resultado.pack()
+
+
+# cria a janela
+janela.mainloop()
