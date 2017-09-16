@@ -1,3 +1,16 @@
+# ############################################################################################################
+# - SOBRE O PROGRAMA -
+# Nome: SortMaki
+# Versão atual: 1.0
+# Descrição: Gera quantidade números aleatórios escolhida pelo usuário, dado o intervalo do sorteio.
+#            Possui opção para ordenação de resultados.
+# Autora: Layze Brandão
+# Data: 16 MAR 2017
+# Licença: Livre para modificação (fins acadêmicos), com a devida atribuição à autora. Vedado o uso comercial
+# Linguagem: Python 3.6 / GUI: Tkinter
+# ############################################################################################################
+
+
 from tkinter import *
 from random import randrange, seed
 
@@ -80,8 +93,9 @@ class Sorteador:
         self.ent_range.pack(side = LEFT)
 
         # cria o check button
+        self.seleciona_checkb = False
         self.lb_ord = Label(self.frame5, text = 'Ordenar resultado? ', font = self.cfont)
-        self.ordenar = Checkbutton(self.frame5, text = 'Sim', font = self.cfont)
+        self.ordenar = Checkbutton(self.frame5, text = 'Sim', font = self.cfont, command = self.ativa_checkb)
         self.lb_ord.pack(side = LEFT)
         self.ordenar.pack(side = LEFT)
 
@@ -131,6 +145,11 @@ class Sorteador:
         self.ent_numeros.focus_force()
 
 
+    def ativa_checkb(self):
+        self.seleciona_checkb = not self.seleciona_checkb
+
+
+
     # -------------------------------------------------------------------------------------------------------
     # LOGICA
 
@@ -156,9 +175,13 @@ class Sorteador:
                         if numero not in ganhadores:
                             ganhadores.append(numero)
                 sorteado = ganhadores
-
-                self.lb_resultado['fg'] = 'blue'
-                self.lb_resultado['text'] = ('Números sorteados: {}'.format(sorteado))
+                if self.seleciona_checkb:
+                    ganhadores.sort()
+                    self.lb_resultado['fg'] = 'blue'
+                    self.lb_resultado['text'] = ('Números sorteados: {}'.format(sorteado))
+                else:
+                    self.lb_resultado['fg'] = 'blue'
+                    self.lb_resultado['text'] = ('Números sorteados: {}'.format(sorteado))
             else:
                 self.erro_valor()
         else:
