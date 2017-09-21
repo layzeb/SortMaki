@@ -103,6 +103,7 @@ class Sorteador:
         # cria um botao
         # command lida com o evento, acionando o método criado
         self.botao = Button(self.frame4, text = 'Sortear', bg = '#25b05d', command = self.checker, width = 10, font = self.bfont)
+        self.botao.bind('<Return>', self.go_enter)
         self.botao.pack()
 
         # exibe os numeros sorteados
@@ -163,14 +164,14 @@ class Sorteador:
         if qt_num < stop:
 
             if qt_num == 1:
-                sorteado = randrange(1, stop)
+                sorteado = randrange(1, stop+1)
                 self.lb_resultado['text'] = ('Número sorteado: {}'.format(sorteado))
                 self.lb_resultado['fg'] = 'blue'
             elif qt_num > 1:
                 aux = []
                 ganhadores = []
                 while len(ganhadores) < qt_num:
-                    aux.append(randrange(1, stop))
+                    aux.append(randrange(1, stop+1))
                     for numero in aux:
                         if numero not in ganhadores:
                             ganhadores.append(numero)
